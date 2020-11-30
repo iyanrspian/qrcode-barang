@@ -40,7 +40,7 @@
                             <td>{{ $product->harga }}</td>
                             <td>
                                 <button wire:click="edit({{ $product->id }})" class="btn btn-sm btn-info text-white">Edit</button>
-                                <button class="btn btn-sm btn-danger text-white">Hapus</button>
+                                <button wire:click="destroy({{ $product->id }})" class="btn btn-sm btn-danger text-white">Hapus</button>
                             </td>
                         </tr>
                         @endforeach
