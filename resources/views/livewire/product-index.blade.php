@@ -20,17 +20,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no = 0; ?>
+                        @foreach ($products as $product)
+                        <?php $no++; ?>
                         <tr>
-                            <td class="text-center">1</td>
-                            <td>BRG20-0001</td>
-                            <td>Shampo Zinc</td>
-                            <td class="text-center">3</td>
-                            <td>1500</td>
+                            <td class="text-center">{{ $no }}</td>
+                            <td>{{ $product->kode_brg }}</td>
+                            <td>{{ $product->nama_brg }}</td>
+                            <td class="text-center">{{ $product->qty }}</td>
+                            <td>{{ $product->harga }}</td>
                             <td>
                                 <button class="btn btn-sm btn-info text-white">Edit</button>
                                 <button class="btn btn-sm btn-danger text-white">Hapus</button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
