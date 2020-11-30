@@ -13,7 +13,7 @@ class ProductUpdate extends Component
     public $id_brg;
 
     protected $listeners = [
-        'edit' => 'show'
+        'edited' => 'show'
     ];
 
     public function render()

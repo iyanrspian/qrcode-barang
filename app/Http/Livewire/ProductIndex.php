@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductIndex extends Component
 {
+    use WithPagination;
+
     public $status = false;
 
     protected $listeners = [
@@ -17,7 +20,7 @@ class ProductIndex extends Component
     public function render()
     {
         return view('livewire.product-index', [
-            'products' => Product::latest()->get()
+            'products' => Product::latest()->paginate(5)
         ]);
     }
 
@@ -25,7 +28,7 @@ class ProductIndex extends Component
     {
         $this->status = true;
         $product = Product::find($id);
-        $this->emit('edit', $product);
+        $this->emit('edited', $product);
     }
 
     public function destroy($id)
@@ -47,5 +50,8 @@ class ProductIndex extends Component
     {
         // dd($product);
         session()->flash('message', 'Data barang telah diperbarui!');
+        // Masih bug, jika tidak di reload, setelah update barang
+        // Kalo tambah barang, namun malah update barang terakhir
+        return redirect('/home');
     }
 }
