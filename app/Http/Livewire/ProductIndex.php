@@ -10,7 +10,8 @@ class ProductIndex extends Component
     public $status = false;
 
     protected $listeners = [
-        'stored' => 'handle'
+        'stored' => 'storing',
+        'updated' => 'updating'
     ];
 
     public function render()
@@ -27,9 +28,24 @@ class ProductIndex extends Component
         $this->emit('edit', $product);
     }
 
-    public function handle($product)
+    public function destroy($id)
+    {
+        if ($id) {
+            $product = Product::find($id);
+            $product->delete();
+            session()->flash('message', 'Data barang telah dihapus!');
+        }
+    }
+
+    public function storing($product)
     {
         // dd($product);
         session()->flash('message', 'Data barang telah ditambahkan!');
+    }
+
+    public function updating($product)
+    {
+        // dd($product);
+        session()->flash('message', 'Data barang telah diperbarui!');
     }
 }
