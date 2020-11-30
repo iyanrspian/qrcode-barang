@@ -1,7 +1,11 @@
 <div class="row mr-1 ml-1 mt-2">
     <div class="col-md-4 order-md-2">
         <div class="card">
-            <livewire:product-create></livewire:product-create>
+            @if ($status)
+                <livewire:product-update></livewire:product-update>
+            @else
+                <livewire:product-create></livewire:product-create>
+            @endif
         </div>
     </div>
     <div class="col-md-8 order-md-1">
@@ -35,7 +39,7 @@
                             <td class="text-center">{{ $product->qty }}</td>
                             <td>{{ $product->harga }}</td>
                             <td>
-                                <button class="btn btn-sm btn-info text-white">Edit</button>
+                                <button wire:click="edit({{ $product->id }})" class="btn btn-sm btn-info text-white">Edit</button>
                                 <button class="btn btn-sm btn-danger text-white">Hapus</button>
                             </td>
                         </tr>

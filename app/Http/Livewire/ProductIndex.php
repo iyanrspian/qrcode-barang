@@ -7,6 +7,8 @@ use Livewire\Component;
 
 class ProductIndex extends Component
 {
+    public $status = false;
+
     protected $listeners = [
         'stored' => 'handle'
     ];
@@ -16,6 +18,13 @@ class ProductIndex extends Component
         return view('livewire.product-index', [
             'products' => Product::latest()->get()
         ]);
+    }
+
+    public function edit($id)
+    {
+        $this->status = true;
+        $product = Product::find($id);
+        $this->emit('edit', $product);
     }
 
     public function handle($product)
