@@ -21,5 +21,6 @@ class ProductIndex extends Component
     public function handle($product)
     {
         // dd($product);
+        session()->flash('message', 'Data barang telah ditambahkan!');
     }
 }

@@ -8,6 +8,11 @@
         <div class="card">
             <div class="card-header">List Produk</div>
             <div class="card-body">
+                @if (session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
                 <table class="table table-bordered">
                     <thead>
                         <tr>
